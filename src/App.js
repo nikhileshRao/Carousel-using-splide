@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import datas from "./data.json";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import "@splidejs/react-splide/css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Splide Carousel</h1>
+      <Splide
+        aria-label="Carousel"
+        options={{
+          autoplay: true,
+          type: "fade",
+          autoScroll: {
+            speed: 1,
+          },
+        }}
+      >
+        {datas.map((data) => {
+          return (
+            <SplideSlide key={data.id}>
+              <div className="images">
+                <h2>{data.image_name}</h2>
+                <img src={data.url} alt={data.image_name} />
+              </div>
+            </SplideSlide>
+          );
+        })}
+      </Splide>
     </div>
   );
-}
+};
 
 export default App;
